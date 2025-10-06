@@ -1,4 +1,59 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No:250541618
+AD-SOYAD:Sema Elmahmud
+Konu Adı:Favori oyunda yüksek skor alma
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Başlat:
+    skor ← 0
+    oyunDurumu ← "devam ediyor"
+    oyuncuCanı ← maksimumCan
+    zorlukSeviyesi ← 1
+
+    // Oyuncu karakterini başlat
+    OyuncuyuKonumlandır()
+    GüçlendirmeleriSıfırla()
+
+Oyun Döngüsü Başla:
+    WHILE oyunDurumu = "devam ediyor" DO
+
+        // Oyunun hızını veya zorluğunu ayarlamak
+        ZorlukSeviyesiniGüncelle(skor)
+
+        // Oyuncu girdisini al (klavye, dokunma vs.)
+        oyuncuGirdisi ← GirdiAl()
+
+        // Oyuncunun hareketini uygula
+        OyuncuyuHareketEttir(oyuncuGirdisi)
+
+        // Oyundaki nesneleri güncelle (engel, düşman, skor nesneleri vb.)
+        NesneleriGüncelle()
+
+        // Çarpışma kontrolü
+        IF OyuncuEngelleÇarpıştı() THEN
+            oyuncuCanı ← oyuncuCanı - 1
+            IF oyuncuCanı = 0 THEN
+                oyunDurumu ← "bitti"
+                ÇıkışYap()
+            ENDIF
+        ENDIF
+
+        // Puan kazanımı
+        IF OyuncuSkorNesnesineUlaştı() THEN
+            skor ← skor + PuanHesapla()
+        ENDIF
+
+        // Güçlendirici toplama
+        IF OyuncuGüçlendiriciyeUlaştı() THEN
+            GüçlendiriciAktifleştir()
+        ENDIF
+
+        // Skoru ekranda güncelle
+        SkoruGoster(skor)
+
+        // Oyunun bir sonraki karesine geç
+        Bekle(1 kare)
+    END WHILE
+
+Oyun Bitti:
+    SkoruKaydet(skor)
+    YüksekSkorTablosunuGüncelle(skor)
+    OyunSonuEkranıGoster()
