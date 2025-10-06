@@ -1,4 +1,70 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No:250541618
+AD-SOYAD:Sema Elmahmud
+Konu Adı: Lego ile belirli şekil yapma
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Class LegoPiece:
+    Attribute position (x, y, z)  // Parçanın konumu
+    Attribute size (length, width, height)  // Parçanın boyutları
+    Attribute color  // Parçanın rengi
+Function BuildLegoShape(shape):
+    // 1. Adım: Şekli böl
+    sub_shapes = DivideShape(shape)
+    
+    // 2. Adım: Alt parçaları sırayla yerleştir
+    For each sub_shape in sub_shapes:
+        lego_pieces = GenerateLegoPieces(sub_shape)
+        For each piece in lego_pieces:
+            PlaceLegoPiece(piece)
+    
+    // 3. Adım: Şekli birleştir
+    final_shape = CombineSubShapes(sub_shapes)
+    
+    Return final_shape
+
+
+Function DivideShape(shape):
+    // Şekli küçük alt parçalara ayır
+    sub_shapes = []  // Boş bir liste oluştur
+    If shape is complex:
+        // Büyük şekli daha küçük parçalara böl
+        sub_shapes.append(sub_shape_1)
+        sub_shapes.append(sub_shape_2)
+        // Daha fazla alt parça eklenebilir
+    Else:
+        sub_shapes.append(shape)  // Basit şekil ise direkt listeye ekle
+    
+    Return sub_shapes
+
+
+Function GenerateLegoPieces(sub_shape):
+    // Alt parçanın şekline uygun LEGO parçalarını oluştur
+    lego_pieces = []  // Parça listesi
+    If sub_shape has a known pattern:
+        // Örneğin, bir ev şekli için pencere, kapı, duvar vb. parçaları oluştur
+        lego_pieces.append(lego_piece_1)
+        lego_pieces.append(lego_piece_2)
+        // Bu işlemi şeklin her bir kısmı için tekrar et
+    Else:
+        // Bilinmeyen şekil için genel bir çözüm üret
+        lego_pieces.append(general_piece_1)
+        lego_pieces.append(general_piece_2)
+    
+    Return lego_pieces
+
+
+Function PlaceLegoPiece(piece):
+    // Bir LEGO parçasını doğru konumda yerleştir
+    If piece can fit at the current position:
+        Position piece at its (x, y, z) coordinates
+    Else:
+        Adjust position or rotate piece to fit
+
+    
+Function CombineSubShapes(sub_shapes):
+    // Alt şekilleri birleştir
+    final_shape = []
+    For each sub_shape in sub_shapes:
+        Merge sub_shape into final_shape
+    Return final_shape
+
+
