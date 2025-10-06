@@ -1,4 +1,90 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No:250541618
+AD-SOYAD:Sema Elmahmud
+Konu Adı:Soğuk Sütlü Kahve Yapımı
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Başla
+
+    // 1. Malzeme ve Araç Kontrolü
+    // Tüm gerekli malzemelerin mevcut olduğundan emin olalım
+    // Kullanıcıya malzeme durumu hakkında bilgi veriyoruz
+
+    Süt Var mı?
+        Evet -> Devam et
+        Hayır -> "Süt alınmalı!" yazdır. İşlemi sonlandır.
+
+    Kahve Var mı?
+        Evet -> Devam et
+        Hayır -> "Kahve alınmalı!" yazdır. İşlemi sonlandır.
+
+    Buz Var mı?
+        Evet -> Devam et
+        Hayır -> "Buz alınmalı!" yazdır. İşlemi sonlandır.
+
+    Şeker Var mı?  // Şeker isteğe bağlı
+        Evet -> Devam et
+        Hayır -> "Şeker yok, eklemek istiyor musunuz?" yazdır ve şeker eklemeyi isteğe bağlı olarak sor.
+
+    Karıştırıcı Var mı?
+        Evet -> Devam et
+        Hayır -> "Karıştırıcı yok, bir çubuk ile karıştırmak ister misiniz?" sorusu sorulur. Eğer cevap hayırsa, işlemi sonlandır.
+
+    // 2. Kahve Hazırlama İşlemi
+    Kahve makineni aç
+    Kahve makinesi çalışıyor mu?
+        Evet -> Devam et
+        Hayır -> "Kahve makinesi arızalı, kontrol et!" yazdır ve işlemi sonlandır.
+
+    Kahve çekirdeklerini veya filtreyi yerleştir
+    Kahve miktarı yeterli mi? // Kahve oranı için önerilen miktar
+        Yeterli -> Devam et
+        Yetersiz -> "Daha fazla kahve eklemelisiniz!" yazdır ve işlemi sonlandır.
+
+    Kahve makinesini çalıştır
+    Kahve makinesi tamamlandı mı?
+        Evet -> Kahve hazır, fincana dökün.
+        Hayır -> "Kahve makineni tekrar çalıştır!" yazdır ve kahve işlemini yeniden başlat.
+
+    // 3. Süt Durumu Kontrolü
+    Süt soğuk mu?
+        Evet -> Devam et
+        Hayır -> "Süt sıcak, buzdolabına koymalı mısınız?" yazdır. 
+            Kullanıcıya "Sütü soğutmak için kaç dakika beklemek istersiniz?" sorusu sorulur.
+            Süreyi belirleyip, süt buzdolabında soğutulur.
+
+    // 4. Buz Hazırlama
+    Buzları hazırlayın
+    Buz kalitesi yeterli mi? 
+        Evet -> Devam et
+        Hayır -> "Buzlar küçülmeli, daha fazla buz eklemelisiniz!" yazdır ve işlemi sonlandır.
+
+    // 5. Şeker Eklenmesi (İsteğe Bağlı)
+    Şeker eklemek ister misiniz? // Şeker isteğe bağlı
+        Evet -> Şeker miktarını belirleyin.
+        Şeker yeterli mi?
+            Yeterli -> Şekeri ekleyin ve karıştırın.
+            Yetersiz -> "Yeterli şeker yok, tekrar eklemelisiniz!" yazdır ve işlemi sonlandır.
+        Hayır -> Şeker eklemeyi atla.
+
+    // 6. Karıştırma
+    Bütün malzemeleri karıştırmaya başla.
+    Karıştırma işlemi ne kadar sürecek?
+        10 saniye -> Karıştırmaya başla.
+        20 saniye -> Karıştırmaya devam et.
+
+    Karıştırıcı çalışıyor mu?
+        Evet -> Devam et
+        Hayır -> "Karıştırıcı arızalı, manuel karıştırma işlemi yapılacak." yazdır.
+            Bir çubuk veya başka bir araç ile karıştırmaya başla.
+
+    // 7. Soğuk Sütlü Kahve Hazır
+    Bütün malzemeler karıştırıldığında:
+        Kahve, süt, buz ve şeker tam karıştı mı?
+            Evet -> "Soğuk sütlü kahve hazır, afiyet olsun!" yazdır ve servise başla.
+            Hayır -> "Karıştırma yeterince iyi yapılmadı, daha fazla karıştırma yapın." yazdır ve tekrar karıştır.
+
+    // 8. Sonuç Kontrolü
+    Kullanıcı tatminkar mı? (Soğuk sütlü kahve testi)
+        Evet -> "Afiyet olsun!" yazdır ve işlemi sonlandır.
+        Hayır -> "Lezzet beklediğiniz gibi değil, kahve tarifini tekrar gözden geçirin." yazdır ve işlemi sonlandır.
+
+Bitir
