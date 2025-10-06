@@ -1,4 +1,87 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No:250541618
+AD-SOYAD:  Sema Elmahmud
+Konu Adı: Kütüphanede kitap arama sistemi
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+BAŞLA
+
+    // 1. Kitap veritabanını tanımla (örnek veri)
+    KÜTÜPHANE ← [
+        {Ad: "Suç ve Ceza", Yazar: "Dostoyevski", Kategori: "Roman", ISBN: "123"},
+        {Ad: "Sefiller", Yazar: "Victor Hugo", Kategori: "Roman", ISBN: "456"},
+        {Ad: "1984", Yazar: "George Orwell", Kategori: "Distopya", ISBN: "789"},
+        {Ad: "Hayvan Çiftliği", Yazar: "George Orwell", Kategori: "Distopya", ISBN: "101"},
+        ...
+    ]
+
+    TEKRAR_ARA ← DOĞRU
+
+    // 2. Ana döngü: Kullanıcı kitap aramak isterse
+    WHILE TEKRAR_ARA == DOĞRU YAP
+
+        // 3. Kullanıcıdan arama türünü al
+        YAZ "Arama yapmak istediğiniz kritere göre seçim yapın:"
+        YAZ "1 - Kitap adına göre ara"
+        YAZ "2 - Yazara göre ara"
+        YAZ "3 - Kategoriye göre ara"
+        YAZ "4 - ISBN numarasına göre ara"
+        GİRİŞ aramaSecimi
+
+        // 4. Arama terimini al
+        YAZ "Lütfen aramak istediğiniz değeri girin:"
+        GİRİŞ aramaDegeri
+
+        // 5. Arama işlemi
+        ARAMA_SONUCU ← []
+
+        FOR kitap IN KÜTÜPHANE YAP
+            EĞER aramaSecimi == 1 VE kitap.Ad içinde aramaDegeri varsa
+                ARAMA_SONUCU'na kitap ekle
+            DEĞİLSE EĞER aramaSecimi == 2 VE kitap.Yazar içinde aramaDegeri varsa
+                ARAMA_SONUCU'na kitap ekle
+            DEĞİLSE EĞER aramaSecimi == 3 VE kitap.Kategori içinde aramaDegeri varsa
+                ARAMA_SONUCU'na kitap ekle
+            DEĞİLSE EĞER aramaSecimi == 4 VE kitap.ISBN == aramaDegeri ise
+                ARAMA_SONUCU'na kitap ekle
+        SON
+
+        // 6. Sonuçları sırala
+        ARAMA_SONUCU ← alfabetikSırala(ARAMA_SONUCU, "Ad")
+
+        // 7. Sonuçları yazdır
+        EĞER ARAMA_SONUCU boş ise
+            YAZ "Aradığınız kritere uygun kitap bulunamadı."
+        DEĞİLSE
+            YAZ "Bulunan kitaplar:"
+            FOR kitap IN ARAMA_SONUCU YAP
+                YAZ "- ", kitap.Ad, " | ", kitap.Yazar, " | ", kitap.Kategori, " | ISBN: ", kitap.ISBN
+            SON
+        SON
+
+        // 8. Tekrar arama yapmak ister misiniz?
+        YAZ "Başka bir arama yapmak ister misiniz? (E/H):"
+        GİRİŞ cevap
+        EĞER cevap == "E" VEYA cevap == "e" ise
+            TEKRAR_ARA ← DOĞRU
+        DEĞİLSE
+            TEKRAR_ARA ← YANLIŞ
+        SON
+
+    SON
+
+BİTİR
+
+
+// ----------- DESTEK FONKSİYONLARI -----------
+FONKSİYON alfabetikSırala(liste, alan)
+    N ← liste boyutu
+    FOR i ← 0 TO N-1
+        FOR j ← i+1 TO N
+            EĞER liste[i][alan] > liste[j][alan] ise
+                GEÇİCİ ← liste[i]
+                liste[i] ← liste[j]
+                liste[j] ← GEÇİCİ
+            SON
+        SON
+    SON
+    DÖNDÜR liste
+SON
