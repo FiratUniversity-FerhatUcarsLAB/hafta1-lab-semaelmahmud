@@ -1,4 +1,89 @@
-Öğrenci No:
-AD-SOYAD:
-
+Öğrenci No:250541618
+AD-SOYAD:Sema Elmahmud
+Konu Adı:Sudoku çözme yaklaşımı
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+Sudoku Çözme Algoritması (Backtracking Yaklaşımıyla)
+Pseudocode:
+FONKSİYON solveSudoku(board):
+    EĞER board çözüldüyse:
+        return TRUE
+
+    (row, col) ← ilk boş hücreyi bul(board)
+    EĞER boş hücre yoksa:
+        return TRUE  // çözüm bulundu
+
+    FOR num IN 1 to 9:
+        EĞER isValid(board, row, col, num):
+            board[row][col] ← num
+
+            EĞER solveSudoku(board) TRUE dönerse:
+                return TRUE  // çözüm bulundu
+
+            board[row][col] ← 0  // geri al (backtrack)
+
+    return FALSE  // hiçbir sayı uymuyorsa çözüm yok
+
+FONKSİYON isValid(board, row, col, num):
+    // Satırda kontrol et
+    FOR c IN 0 to 8:
+        EĞER board[row][c] = num:
+            return FALSE
+
+    // Sütunda kontrol et
+    FOR r IN 0 to 8:
+        EĞER board[r][col] = num:
+            return FALSE
+
+    // 3x3 blok kontrolü
+    startRow ← (row / 3) * 3
+    startCol ← (col / 3) * 3
+
+    FOR r IN startRow to startRow+2:
+        FOR c IN startCol to startCol+2:
+            EĞER board[r][c] = num:
+                return FALSE
+
+    return TRUE
+
+FONKSİYON ilk boş hücreyi bul(board):
+    FOR row IN 0 to 8:
+        FOR col IN 0 to 8:
+            EĞER board[row][col] = 0:
+                return (row, col)
+
+    return NULL  // boş hücre yok
+
+Oyun Karar Verme ve Rakip Hamlelerini Öngörme Algoritması (MiniMax Yaklaşımı)
+FONKSİYON minimax(board, derinlik, maxPlayer):
+    EĞER oyun bitti veya derinlik = 0:
+        return evaluate(board)
+
+    EĞER maxPlayer:
+        maxEval ← -∞
+        FOR each possible move IN board:
+            yeniTahta ← hamleyiUygula(board, move)
+            eval ← minimax(yeniTahta, derinlik - 1, FALSE)
+            maxEval ← MAX(maxEval, eval)
+        return maxEval
+    DEĞİLSE:
+        minEval ← +∞
+        FOR each possible move IN board:
+            yeniTahta ← hamleyiUygula(board, move)
+            eval ← minimax(yeniTahta, derinlik - 1, TRUE)
+            minEval ← MIN(minEval, eval)
+        return minEval
+
+FONKSİYON enİyiHamleyiBul(board):
+    bestScore ← -∞
+    bestMove ← NULL
+
+    FOR each possible move IN board:
+        yeniTahta ← hamleyiUygula(board, move)
+        score ← minimax(yeniTahta, derinlik=3, maxPlayer=FALSE)
+
+        EĞER score > bestScore:
+            bestScore ← score
+            bestMove ← move
+
+    return bestMove
